@@ -1,0 +1,33 @@
+<?php
+// Database connection details
+$servername = "localhost:3306"; // usually localhost
+$username = "root";             // your database username
+$password = "monish777";        // your database password
+$dbname = "COSMIC";             // your database name
+
+// Create a connection to the MySQL database
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch data from the Satellites table
+$sql = "SELECT * FROM Satellites";
+$result = $conn->query($sql);
+
+// Check if any data was fetched
+$satellites = [];
+
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $satellites[] = $row;
+    }
+    echo json_encode($satellites);
+} else {
+    echo json_encode([]); // Return empty array if no results
+}
+
+$conn->close();
+?>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interstellar Travel</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      /* Global space background */
+      background: url('https://unblast.com/wp-content/uploads/2021/01/Space-Background-Images.jpg') center/cover no-repeat fixed;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; display: flex;
+      justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; z-index: 1000;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    nav .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+    nav ul { display: flex; gap: 2rem; }
+    nav ul li a:hover { opacity: 0.7; }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      /* Show underlying galaxy background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* Dark overlay to keep text legible */
+      background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 1rem;
+      animation: fadeInDown 1.5s ease-out forwards;
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border: 2px solid #4DA8DA;
+      border-radius: 50px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn:hover {
+      background: #4DA8DA;
+      color: #000;
+    }
+
+    /* Astronaut Floating */
+    .astronaut {
+      position: absolute;
+      right: 5%;
+      bottom: 0;
+      width: 30%;
+      max-width: 600px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Scroll Reveal Sections */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: none;
+    }
+    section h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    section p { font-size: 1rem; line-height: 1.6; }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.6);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50%      { transform: translateY(-20px) translateX(10px); }
+    }
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo"></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#tours">Dive</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Cosic Explorer</h1>
+      <p>Explore the farthest reaches of our solar system with Universe Travel. Journey to Mars, Venus, and beyond.</p>
+      <a href="dbmsss.html" class="btn">Start Your Journey</a>
+    </div>
+    <img src="WhatsApp_Image_2025-04-23_at_23.19.47_b749b557-removebg-preview.png" alt="Floating Astronaut" class="astronaut">
+  </header>
+
+  <section id="about" class="reveal">
+    <h2>About Us</h2>
+    <p>We are pioneers of civilian space tourism, dedicated to making interstellar travel safe, comfortable, and unforgettable. Our experienced team of astronauts and engineers work tirelessly to open the cosmos to everyone.</p>
+  </section>
+
+  <section id="tours" class="reveal">
+    <h2>Our Tours</h2>
+    <p>Choose from a variety of tours that take you atmospherically close to celestial wonders: Low Earth Orbit, Lunar Flyby, Mars Surface Landing, and more. Each tour is customizable to your adventure level.</p>
+  </section>
+
+  <section id="planets" class="reveal">
+    <h2>Destinations</h2>
+    <p>Visit the red dunes of Mars, the thick clouds of Venus, the icy rings of Saturn, or float through the asteroid belt. Our routes are planned for maximum safety and maximum wonder.</p>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>Contact</h2>
+    <p>Ready for lift-off? Reach our mission control at +1 (800) 123-SPACE or drop us an email at <a href="mailto:info@universe.travel">info@universe.travel</a>.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Universe Travel. All rights reserved.
+  </footer>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>

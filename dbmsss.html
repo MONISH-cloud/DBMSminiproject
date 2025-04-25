@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Solar System</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #000000; /* Set background to pitch black */
+      background-image: url("https://wallpaperaccess.com/full/1268312.jpg");
+      overflow: hidden;
+      perspective: 1000px;
+      font-family: Arial, sans-serif;
+    }
+
+    .space {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* Heading Styles */
+    h1 {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      color: #D3D3D3;
+      font-size: 40px;
+      font-weight: 100; /* Ultra-thin font weight */
+      letter-spacing: 5px; /* Increased space between letters */
+      text-transform: uppercase; /* Optional: makes the text uppercase for more style */
+      font-family:'Times New Roman', Times, serif; /* Use a very thin and clean font */
+      z-index: 10;
+      
+    }
+    .HH {
+  border: 2px solid grey;  /* Sets a grey border with a 5px thickness */
+         /* Adds a 5% left margin */
+  border-radius: 5%;    
+  WIDTH:90%;  /* Rounds the corners by 5% */
+  border-width: 90%;
+}
+
+
+    /* Astronaut Image Styles */
+    .astronaut {
+      position: absolute;
+      top: 20px;
+      left: 150px;
+      width: 50px; /* Adjust size of the astronaut image */
+      height: 100px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0e/Astronaut_PNG_Clipart.png');
+      background-size: cover;
+      background-position: center;
+      z-index: 10;
+    }
+
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 170px;
+      height: 170px;
+      margin-left: -70px;
+      margin-top: -70px;
+      background: url('https://media.istockphoto.com/id/1156217551/photo/sun-isolated-in-deep-black-background.jpg?s=170667a&w=0&k=20&c=xNwq9wnV03oXcnnx01VfVcvsLOHe84pxgeMIUrHHZI4=') no-repeat center/cover;
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 170px;
+  height: 170px;
+  margin-left: -70px;
+  margin-top: -70px;
+  background: url('https://media.istockphoto.com/id/1156217551/photo/sun-isolated-in-deep-black-background.jpg?s=170667a&w=0&k=20&c=xNwq9wnV03oXcnnx01VfVcvsLOHe84pxgeMIUrHHZI4=') no-repeat center/cover;
+  border-radius: 50%;
+  z-index: 0;
+  
+  /* Add the animation for rotating the sun */
+  animation: rotateSun 10s infinite linear; /* Adjust the timing as needed */
+}
+
+/* Keyframes to rotate the sun anticlockwise */
+@keyframes rotateSun {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg); /* Negative value for anticlockwise rotation */
+  }
+}
+
+
+    .system {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%) rotateX(60deg);
+      transform-style: preserve-3d;
+    }
+
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      transform: translate(-50%, -50%) rotateX(-60deg);
+      z-index: 5;
+    }
+    .menu-box {
+  position: absolute;
+  top: 35%;
+  right: 40%;
+  background-color: rgba(50, 50, 50, 0.3); /* dark grey, 75% opacity */
+  width:22%;
+ 
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 20;
+  box-shadow: 0 0 10px #000;
+}
+
+.menu-box h2 {
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-box select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  opacity: 0.5;  /* Apply to the background */
+  
+}
+
+.menu-box select option {
+  opacity: 1;  /* Keep the option text fully opaque */
+}
+
+.header h1 sub.tagline {
+  display: block;
+  font-size: 10px;
+  color: #d0e0f0;
+  margin-left: 150px;
+  
+  font-style: italic;
+  position: relative;
+ 
+}
+.box {
+  margin-top: 20px;              /* Keep top margin */
+  width: 300px;                  /* Set the width of the box */
+  height: 100px;                 /* Set the height of the box */
+  border-top: 2px solid grey;    /* Top border with grey */
+  border-right: 2px solid grey;  /* Right border with grey */
+  border-bottom: 2px solid grey; /* Bottom border with grey */
+  border-left: none;             /* No left border */
+  padding: 20px;                 /* Empty space inside the box */
+  margin-left: 20%;              /* Center horizontally */
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="space">
+    <!-- Heading and Astronaut -->
+    <div class="header">
+      <h1>COSMIC EXPLORER<sub class="tagline">Dive deep into the endless.</sub></h1>
+    </div>
+    <div class="box"></div>
+    
+    <div class="astronaut"></div>
+
+    <div class="sun"></div>
+
+    <div class="system">
+      <!-- Orbits -->
+      <div class="orbit" style="width: 300px; height: 180px;"></div>
+      <div class="orbit" style="width: 420px; height: 252px;"></div>
+      <div class="orbit" style="width: 540px; height: 324px;"></div>
+      <div class="orbit" style="width: 660px; height: 396px;"></div>
+      <div class="orbit" style="width: 780px; height: 468px;"></div>
+      <div class="orbit" style="width: 900px; height: 540px;"></div>
+      <div class="orbit" style="width: 1020px; height: 612px;"></div>
+      <div class="orbit" style="width: 1140px; height: 684px;"></div>
+
+      <!-- Planets (increased sizes) -->
+      <div class="planet" style="width: 50px; height: 50px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg');"></div>
+      <div class="planet" style="width: 60px; height: 60px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg');"></div>
+      <div class="planet" style="width: 55px; height: 55px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg');"></div>
+      <div class="planet" style="width: 50px; height: 50px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg');"></div>
+      <div class="planet" style="width: 90px; height: 90px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg');"></div>
+      <div class="planet" style="width: 75px; height: 75px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg');"></div>
+      <div class="planet" style="width: 65px; height: 65px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg');"></div>
+      <div class="planet" style="width: 65px; height: 65px; background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg');"></div>
+    </div>
+  </div>
+  <div class="menu-box">
+    <h2>Select Category to browse.</h2>
+    <select id="categorySelect">
+      <option value="" selected disabled>Select a category</option> <!-- Default placeholder -->
+      <option value="galaxies">Galaxies</option>
+      <option value="stars">Stars</option>
+      <option value="planets">Planets</option>
+      <option value="moons">Moons</option>
+      <option value="asteroids">Asteroids</option>
+      <option value="satellites">Satellites</option>
+      <option value="comets">Comets</option>
+      <option value="spacestations">Space Stations</option>
+      <option value="starsystems">Star Systems</option>
+    </select>
+  </div>
+  
+  
+
+  <script>
+    const planetElems = document.querySelectorAll('.planet');
+    const orbitX = [150, 210, 270, 330, 390, 450, 510, 570]; // spread out more
+    const orbitY = orbitX.map(r => r * 0.6); // keep elliptical
+    const speeds = [0.025, 0.02, 0.015, 0.012, 0.008, 0.007, 0.004, 0.003];
+    let angles = new Array(8).fill(0);
+
+    function animate() {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      planetElems.forEach((planet, i) => {
+        angles[i] += speeds[i];
+        const x = centerX + Math.cos(angles[i]) * orbitX[i];
+        const y = centerY + Math.sin(angles[i]) * orbitY[i];
+        planet.style.left = `${x}px`;
+        planet.style.top = `${y}px`;
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+    document.getElementById('categorySelect').addEventListener('change', function () {
+  const selected = this.value;
+  alert(`You selected: ${selected}`); // Replace this with actual logic
+});
+
+  </script>
+  <script>
+    // Get the select element
+    const categorySelect = document.getElementById('categorySelect');
+  
+    // Add an event listener for when the value changes
+    categorySelect.addEventListener('change', function() {
+      // Get the selected value
+      const selectedValue = categorySelect.value;
+  
+      // Check the selected value and navigate accordingly
+      switch (selectedValue) {
+        case 'galaxies':
+          window.location.href = 'galaxy.html'; // Navigate to galaxies page
+          break;
+        case 'stars':
+          window.location.href = 'star.html'; // Navigate to stars page
+          break;
+        case 'planets':
+          window.location.href = 'planet.html'; // Navigate to planets page
+          break;
+        case 'moons':
+          window.location.href = 'moon.html'; // Navigate to moons page
+          break;
+        case 'asteroids':
+          window.location.href = 'asteroid.HTML'; // Navigate to asteroids page
+          break;
+        case 'satellites':
+          window.location.href = 'satellite.HTML'; // Navigate to satellites page
+          break;
+        case 'comets':
+          window.location.href = 'comets.HTML'; // Navigate to comets page
+          break;
+        case 'spacestations':
+          window.location.href = 'spacestation.HTML'; // Navigate to space stations page
+          break;
+        case 'starsystems':
+          window.location.href = 'starsystem.HTML'; // Navigate to star systems page
+          break;
+        default:
+          // Default action if no valid selection is made
+          alert("Please select a valid category.");
+      }
+    });
+  </script>
+  
+</body>
+</html>
